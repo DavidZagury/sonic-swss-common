@@ -11,7 +11,8 @@
 #include <errno.h>
 #include <cxxabi.h>
 #include "string.h"
-#include "json.hpp"
+#include <iostream>
+#include <sstream>
 #include "zmq.h"
 #include <unordered_map>
 #include <boost/serialization/vector.hpp>
@@ -105,10 +106,10 @@ template <typename Map>
 string
 map_to_str(const Map &m)
 {
-    stringstream _ss;
-    string sep;
+    std::stringstream _ss;
+    std::string sep;
 
-    _ss << "{";
+    _ss.operator<<("{");
     for (const auto elem: m) {
         _ss << sep << "{" << elem.first << "," << elem.second.substr(0,10) << "}";
         if (sep.empty()) {
